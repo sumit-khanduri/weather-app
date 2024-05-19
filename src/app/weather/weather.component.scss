@@ -1,5 +1,52 @@
 .weather-container {
   display:flex;
+  max-width: 500px;
+  margin: 5rem auto;
+  height:80%;
+  background-color: whitesmoke;
+  position: relative;
+}
+
+.temperature {
+  position: absolute;
+  margin: 6rem auto;
+  padding: 0.5em;
+  z-index: 1;
+  font-size: 5rem;
+  width: 100%;
+  text-align: center;
+}
+
+.week-forecast{
+  position: absolute;
+  margin: 32rem auto;
+  padding: 0.5em;
+  z-index: 1;
+  font-size: 1rem;
+  width: 100%;
+  text-align: center;
+  display:flex;
+  justify-content: space-around;
+  }
+
+.imgCss{
   max-width: 400px;
   margin: 5rem auto;
+}
+
+.searchBar{
+  margin: auto;
+  padding-left: 86px;
+}
+
+.days{
+  font-size:1rem;
+}
+
+sup{
+  //font-size: 1rem;
+}
+
+.icon-display {
+  transform: scale(0.6);
 }

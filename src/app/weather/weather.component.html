@@ -2,15 +2,47 @@
   <mat-card-header>
     <div mat-card-avatar class=""><mat-icon>thunderstorm</mat-icon></div>
     <mat-card-title>{{location}}</mat-card-title>
-    <mat-card-subtitle>{{temperature}}</mat-card-subtitle>
+    <mat-card-subtitle>Delhi, India</mat-card-subtitle>
+    <mat-form-field class="searchBar">
+      <mat-label>Location</mat-label>
+      <label>
+        <input matInput placeholder="Type your city..." #input>
+      </label>
+    </mat-form-field>
   </mat-card-header>
+  <div class="temperature">
+    <span>{{temperature}}</span>
+    <sup>c</sup>
+    <sup><mat-icon class="icon-display">cloud</mat-icon>
+      </sup>
+  </div>
     <img mat-card-image src="./assets/images/partlycloudy.webp" alt="Photo of a Shiba Inu">
+  <div class="week-forecast">
+<label class="days">
+  <p>Mon</p>
+  <p>
+    <sup>
+      10
+      <mat-icon class="icon-display">cloud</mat-icon>
+    </sup>
+  </p>
+</label>
+    <label>Tue</label>
+    <label>Wed</label>
+    <label>Thu</label>
+    <label>Fri</label>
+    <label>Sat</label>
+    <label>Sun</label>
+  </div>
   <mat-card-content>
     <p>
-
     </p>
   </mat-card-content>
-  <mat-card-actions>
+  <mat-card-actions style="width:90%">
+    <button mat-button>LIKE</button>
+    <button mat-button>SHARE</button>
+    <button mat-button>LIKE</button>
+    <button mat-button>SHARE</button>
     <button mat-button>LIKE</button>
     <button mat-button>SHARE</button>
   </mat-card-actions>
