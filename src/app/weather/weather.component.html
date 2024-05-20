@@ -1,17 +1,17 @@
 <mat-card class="weather-container">
   <mat-card-header>
-    <div mat-card-avatar class=""><mat-icon>thunderstorm</mat-icon></div>
-    <mat-card-title>{{location}}</mat-card-title>
-    <mat-card-subtitle>Delhi, India</mat-card-subtitle>
+    <div mat-card-avatar class="weatherIcon"></div>
+    <mat-card-title>{{weatherData?.name}}</mat-card-title>
+    <mat-card-subtitle>{{weatherData?.sys.country}}</mat-card-subtitle>
     <mat-form-field class="searchBar">
       <mat-label>Location</mat-label>
       <label>
-        <input matInput placeholder="Type your city..." #input>
+        <input (keyup)="changeText($event)" (keyup.enter)="searchWeather()" matInput placeholder="Type your city..." #input>
       </label>
     </mat-form-field>
   </mat-card-header>
   <div class="temperature">
-    <span>{{temperature}}</span>
+    <span>{{weatherData?.main.temp | ceil}}</span>
     <sup>c</sup>
     <sup><mat-icon class="icon-display">cloud</mat-icon>
       </sup>

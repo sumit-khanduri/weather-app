@@ -3,7 +3,6 @@
   max-width: 500px;
   margin: 5rem auto;
   height:80%;
-  background-color: whitesmoke;
   position: relative;
 }
 
@@ -49,4 +48,10 @@ sup{
 
 .icon-display {
   transform: scale(0.6);
+}
+
+.weatherIcon {
+  background-image: url('https://openweathermap.org/img/wn/10d@2x.png');
+  background-size: cover;
+  background-color: powderblue;
 }
