@@ -1,8 +1,8 @@
 <mat-card class="weather-container">
   <mat-card-header>
     <div mat-card-avatar [ngStyle]="{'background-image': 'url(' + weatherIcon + ')'}" class="weatherIcon"></div>
-    <mat-card-title>{{weatherData?.name}}</mat-card-title>
-    <mat-card-subtitle>{{weatherData?.sys.country}}</mat-card-subtitle>
+    <mat-card-title>{{weatherData?.city.name}}</mat-card-title>
+    <mat-card-subtitle>{{weatherData?.city.country}}</mat-card-subtitle>
     <mat-form-field class="searchBar">
       <mat-label>Location</mat-label>
       <label>
@@ -12,36 +12,45 @@
   </mat-card-header>
   <div class="temperature">
     <div>
-      {{weatherData?.main.temp | ceil}}
+      {{weatherData?.list[0].main.temp | ceil}}
     </div>
     <div>c</div>
 <!--    <sup><mat-icon class="icon-display">cloud</mat-icon></sup>-->
   </div>
   <div class="highLow">
-  <span class="marginPX">High: {{weatherData?.main.temp_max | ceil}}</span>
-  <span class="marginPX">Low: {{weatherData?.main.temp_min | ceil}}</span>
+  <span class="marginPX">High: {{weatherData?.list[0].main.temp_max | ceil}}</span>
+  <span class="marginPX">Low: {{weatherData?.list[0].main.temp_min | ceil}}</span>
   </div>
   <div class="imgContainer">
     <img class="imgCss" mat-card-image src="{{weatherIcon}}" alt=""/>
-    <p class="desc">{{weatherData?.weather[0]?.description | titlecase}}</p>
+    <p class="desc">{{weatherData?.list[0].weather[0]?.description | titlecase}}</p>
   </div>
 
   <div class="week-forecast">
-    <label class="days">
-  <p>Mon</p>
-  <p>
-    <sup>
-      10
-      <mat-icon class="icon-display">cloud</mat-icon>
-    </sup>
-  </p>
-</label>
-    <label>Tue</label>
-    <label>Wed</label>
-    <label>Thu</label>
-    <label>Fri</label>
-    <label>Sat</label>
-    <label>Sun</label>
+    <mat-card  class="mat-elevation-z1" style="border-radius: 5px;" *ngFor="let day of weatherData?.list">
+
+      <mat-card-header>
+        <mat-card-title style="font-size: 0.8rem;">
+          {{day.dt | weekday}}
+        </mat-card-title>
+        <mat-card-subtitle>{{day.main.temp | ceil}}</mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+<!--    <label class="days">-->
+<!--  <p>Mon</p>-->
+<!--  <p>-->
+<!--    <sup>-->
+<!--      10-->
+<!--      <mat-icon class="icon-display">cloud</mat-icon>-->
+<!--    </sup>-->
+<!--  </p>-->
+<!--</label>-->
+<!--    <label>Tue</label>-->
+<!--    <label>Wed</label>-->
+<!--    <label>Thu</label>-->
+<!--    <label>Fri</label>-->
+<!--    <label>Sat</label>-->
+<!--    <label>Sun</label>-->
   </div>
   <mat-card-content>
     <p>

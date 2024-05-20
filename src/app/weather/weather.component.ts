@@ -7,11 +7,14 @@ import {MatInputModule} from "@angular/material/input";
 import {WeatherService} from "../services.service";
 import {CeilPipe} from "../ceil.pipe";
 import {CommonModule, TitleCasePipe} from "@angular/common";
+import {WeekdayPipe} from "../weekday.pipe";
+import {concatMap, switchMap} from "rxjs";
 
 @Component({
   selector: 'app-weather',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatCardModule, MatIconModule, MatFormFieldModule, MatInputModule, CeilPipe, TitleCasePipe],
+  imports: [CommonModule, MatButtonModule, MatCardModule,
+    MatIconModule, MatFormFieldModule, MatInputModule, CeilPipe, TitleCasePipe, WeekdayPipe],
   templateUrl: './weather.component.html',
   styleUrl: './weather.component.scss'
 })
@@ -25,6 +28,7 @@ export class WeatherComponent {
 
 
   constructor(public weatherService: WeatherService) {
+    this.multipleDaysForecast()
   }
 
   ngOnInit() {
@@ -41,11 +45,29 @@ export class WeatherComponent {
      this.weatherService.getWeather(this.text).subscribe({
        next: data => {
          this.weatherData = data;
-         console.log(this.weatherData?.weather[0].icon)
-         this.weatherIcon = `https://openweathermap.org/img/wn/${this.weatherData?.weather[0].icon}@4x.png`
-         console.log(JSON.stringify(this.weatherData.name))
+         if (this.weatherData?.list) {
+           this.weatherIcon = `https://openweathermap.org/img/wn/${this.weatherData?.list[0].weather[0].icon}@4x.png`
+         }
+         // console.log(JSON.stringify(this.weatherData))
        },
        error: err => console.log(err)
      })
+  }
+/*
+Below i know that i can use lat and lon param from  this.weatherData object but I here i am demonstrating how to use concatMap and also destructuring.
+Though multipleDaysForecast will not work because that API is paid only so i am getting error for that
+ */
+  multipleDaysForecast() {
+   this.weatherService.getWeather(this.text).pipe(
+     concatMap(({city: {coord: {lat, lon}}}) => {
+       return this.weatherService.multipleDaysForecast(lat, lon, 'fa7b7aed0a86b05552173f0fccbd60ad',7);
+    })).subscribe({
+      next: data => {
+        console.log(data)
+      },
+      error: err => {
+        console.log(err)
+      }
+    })
   }
 }
