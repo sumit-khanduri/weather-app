@@ -1,6 +1,6 @@
 <mat-card class="weather-container">
   <mat-card-header>
-    <div mat-card-avatar class="weatherIcon"></div>
+    <div mat-card-avatar [ngStyle]="{'background-image': 'url(' + weatherIcon + ')'}" class="weatherIcon"></div>
     <mat-card-title>{{weatherData?.name}}</mat-card-title>
     <mat-card-subtitle>{{weatherData?.sys.country}}</mat-card-subtitle>
     <mat-form-field class="searchBar">
@@ -11,14 +11,23 @@
     </mat-form-field>
   </mat-card-header>
   <div class="temperature">
-    <span>{{weatherData?.main.temp | ceil}}</span>
-    <sup>c</sup>
-    <sup><mat-icon class="icon-display">cloud</mat-icon>
-      </sup>
+    <div>
+      {{weatherData?.main.temp | ceil}}
+    </div>
+    <div>c</div>
+<!--    <sup><mat-icon class="icon-display">cloud</mat-icon></sup>-->
   </div>
-    <img mat-card-image src="./assets/images/partlycloudy.webp" alt="Photo of a Shiba Inu">
+  <div class="highLow">
+  <span class="marginPX">High: {{weatherData?.main.temp_max | ceil}}</span>
+  <span class="marginPX">Low: {{weatherData?.main.temp_min | ceil}}</span>
+  </div>
+  <div class="imgContainer">
+    <img class="imgCss" mat-card-image src="{{weatherIcon}}" alt=""/>
+    <p class="desc">{{weatherData?.weather[0]?.description | titlecase}}</p>
+  </div>
+
   <div class="week-forecast">
-<label class="days">
+    <label class="days">
   <p>Mon</p>
   <p>
     <sup>
@@ -38,12 +47,12 @@
     <p>
     </p>
   </mat-card-content>
-  <mat-card-actions style="width:90%">
-    <button mat-button>LIKE</button>
-    <button mat-button>SHARE</button>
-    <button mat-button>LIKE</button>
-    <button mat-button>SHARE</button>
-    <button mat-button>LIKE</button>
-    <button mat-button>SHARE</button>
-  </mat-card-actions>
+<!--  <mat-card-actions>-->
+<!--&lt;!&ndash;    <button mat-button>LIKE</button>&ndash;&gt;-->
+<!--&lt;!&ndash;    <button mat-button>SHARE</button>&ndash;&gt;-->
+<!--&lt;!&ndash;    <button mat-button>LIKE</button>&ndash;&gt;-->
+<!--&lt;!&ndash;    <button mat-button>SHARE</button>&ndash;&gt;-->
+<!--&lt;!&ndash;    <button mat-button>LIKE</button>&ndash;&gt;-->
+<!--&lt;!&ndash;    <button mat-button>SHARE</button>&ndash;&gt;-->
+<!--  </mat-card-actions>-->
 </mat-card>

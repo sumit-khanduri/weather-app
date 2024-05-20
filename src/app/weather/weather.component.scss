@@ -7,13 +7,14 @@
 }
 
 .temperature {
-  position: absolute;
-  margin: 6rem auto;
-  padding: 0.5em;
+  margin: 0 auto;
+  padding: 0.4em;
   z-index: 1;
   font-size: 5rem;
   width: 100%;
-  text-align: center;
+  justify-content: center;
+  display:flex;
+
 }
 
 .week-forecast{
@@ -29,8 +30,9 @@
   }
 
 .imgCss{
-  max-width: 400px;
-  margin: 5rem auto;
+  height: 250px;
+  width: 250px;
+  margin-right: 1.5rem;
 }
 
 .searchBar{
@@ -51,7 +53,24 @@ sup{
 }
 
 .weatherIcon {
-  background-image: url('https://openweathermap.org/img/wn/10d@2x.png');
   background-size: cover;
   background-color: powderblue;
+}
+
+.highLow {
+  display: flex;
+  justify-content: center;
+  margin-right:10px;
+}
+
+.marginPX{
+  margin-right: 10px;
+}
+
+.imgContainer {
+  margin: 1rem auto; text-align: center; width:100%
+}
+
+.desc {
+  font-size: 1rem; font-family: monospace;
 }

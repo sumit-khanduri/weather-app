@@ -6,11 +6,12 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {WeatherService} from "../services.service";
 import {CeilPipe} from "../ceil.pipe";
+import {CommonModule, TitleCasePipe} from "@angular/common";
 
 @Component({
   selector: 'app-weather',
   standalone: true,
-  imports: [MatButtonModule, MatCardModule, MatIconModule, MatFormFieldModule, MatInputModule, CeilPipe],
+  imports: [CommonModule, MatButtonModule, MatCardModule, MatIconModule, MatFormFieldModule, MatInputModule, CeilPipe, TitleCasePipe],
   templateUrl: './weather.component.html',
   styleUrl: './weather.component.scss'
 })
@@ -20,7 +21,8 @@ export class WeatherComponent {
   location = 'New Delhi';
   temperature= '30'
   weatherData:any;
-  getWeatherIcon: any = 'https://openweathermap.org/img/wn/10d@2x.png';
+  weatherIcon:any = ''
+
 
   constructor(public weatherService: WeatherService) {
   }
@@ -39,6 +41,8 @@ export class WeatherComponent {
      this.weatherService.getWeather(this.text).subscribe({
        next: data => {
          this.weatherData = data;
+         console.log(this.weatherData?.weather[0].icon)
+         this.weatherIcon = `https://openweathermap.org/img/wn/${this.weatherData?.weather[0].icon}@4x.png`
          console.log(JSON.stringify(this.weatherData.name))
        },
        error: err => console.log(err)
