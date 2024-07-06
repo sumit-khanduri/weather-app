@@ -58,16 +58,16 @@ Below i know that i can use lat and lon param from  this.weatherData object but 
 Though multipleDaysForecast will not work because that API is paid only so i am getting error for that
  */
   multipleDaysForecast() {
-   this.weatherService.getWeather(this.text).pipe(
-     concatMap(({city: {coord: {lat, lon}}}) => {
-       return this.weatherService.multipleDaysForecast(lat, lon, 'fa7b7aed0a86b05552173f0fccbd60ad',7);
-    })).subscribe({
-      next: data => {
-        console.log(data)
-      },
-      error: err => {
-        console.log(err)
-      }
-    })
+   // this.weatherService.getWeather(this.text).pipe(
+   //   (concatMap({city: {coord: {lat, lon}}}) => {
+   //     return this.weatherService.multipleDaysForecast(lat, lon, 'fa7b7aed0a86b05552173f0fccbd60ad',7);
+   //  })).subscribe({
+   //    next: data => {
+   //      console.log(data)
+   //    },
+   //    error: err => {
+   //      console.log(err)
+   //    }
+   //  })
   }
 }

@@ -2,8 +2,8 @@
   display:flex;
   max-width: 500px;
   margin: 5rem auto;
-  height:80%;
-  position: relative;
+  height:50%;
+  //position: relative;
 }
 
 .temperature {
@@ -18,15 +18,15 @@
 }
 
 .week-forecast{
-  position: absolute;
-  margin: 32rem auto;
-  padding: 0.5em;
+  padding: 1.5em;
   z-index: 1;
   font-size: 1rem;
   width: 100%;
   text-align: center;
   display:flex;
-  justify-content: space-around;
+  gap: 12px;
+  flex-wrap: wrap;
+
   }
 
 .imgCss{
