@@ -1,39 +1,43 @@
 <mat-card class="weather-container">
   <mat-card-header>
-    <div mat-card-avatar [ngStyle]="{'background-image': 'url(' + weatherIcon + ')'}" class="weatherIcon"></div>
+    <div [ngStyle]="{'background-image': 'url(' + weatherIcon + ')'}" class="weatherIcon" mat-card-avatar></div>
     <mat-card-title>{{weatherData?.city.name}}</mat-card-title>
     <mat-card-subtitle>{{weatherData?.city.country}}</mat-card-subtitle>
     <mat-form-field class="searchBar">
       <mat-label>Location</mat-label>
       <label>
-        <input (keyup)="changeText($event)" (keyup.enter)="searchWeather()" matInput placeholder="Type your city..." #input>
+        <input #input (input)="changeText($event)"
+               (keypress)="handleKeyPress($event)"
+               matInput
+               placeholder="Type your city...">
       </label>
     </mat-form-field>
+
   </mat-card-header>
   <div class="temperature">
     <div>
       {{weatherData?.list[0].main.temp | ceil}}
     </div>
-    <div>c</div>
-<!--    <sup><mat-icon class="icon-display">cloud</mat-icon></sup>-->
+    <div>&deg;C</div>
+    <!--    <sup><mat-icon class="icon-display">cloud</mat-icon></sup>-->
   </div>
   <div class="highLow">
-  <span class="marginPX">High: {{weatherData?.list[0].main.temp_max | ceil}}</span>
-  <span class="marginPX">Low: {{weatherData?.list[0].main.temp_min | ceil}}</span>
+    <span class="marginPX">High: {{weatherData?.list[0].main.temp_max | ceil}}&deg;C</span>
+    <span class="marginPX">Low: {{weatherData?.list[0].main.temp_min | ceil}}&deg;C</span>
   </div>
   <div class="imgContainer">
-    <img class="imgCss" mat-card-image src="{{weatherIcon}}" alt=""/>
+    <img alt="" class="imgCss" mat-card-image src="{{weatherIcon}}"/>
     <p class="desc">{{weatherData?.list[0].weather[0]?.description | titlecase}}</p>
   </div>
 
   <div class="week-forecast">
-    <mat-card  class="mat-elevation-z1" style="border-radius: 5px;" *ngFor="let day of weatherData?.list">
+    <mat-card *ngFor="let day of weatherData?.list" class="mat-elevation-z1" class="weekDayTile">
 
       <mat-card-header>
         <mat-card-title style="font-size: 0.8rem;">
           {{day.dt | weekday}}
         </mat-card-title>
-        <mat-card-subtitle>{{day.main.temp | ceil}}</mat-card-subtitle>
+        <mat-card-subtitle>{{day.main.temp | ceil}}&deg;C</mat-card-subtitle>
       </mat-card-header>
     </mat-card>
   </div>

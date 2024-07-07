@@ -1,9 +1,19 @@
 .weather-container {
   display:flex;
-  max-width: 500px;
+  max-width: 580px;
   margin: 5rem auto;
   height:50%;
+  background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.2));
+  backdrop-filter: blur(1rem);
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
   //position: relative;
+}
+
+
+.glassEffect {
+  background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.2));
+  backdrop-filter: blur(1rem);
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
 }
 
 .temperature {
@@ -18,6 +28,8 @@
 }
 
 .week-forecast{
+  display: flex;
+  justify-content: center;
   padding: 1.5em;
   z-index: 1;
   font-size: 1rem;
@@ -27,7 +39,14 @@
   gap: 12px;
   flex-wrap: wrap;
 
+
   }
+
+.weekDayTile{
+  background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.2));
+  backdrop-filter: blur(1rem);
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+}
 
 .imgCss{
   height: 250px;
@@ -36,9 +55,10 @@
 }
 
 .searchBar{
-  margin: auto;
-  padding-left: 86px;
+  //margin: auto;
+  margin-left: 86px;
 }
+
 
 .days{
   font-size:1rem;
